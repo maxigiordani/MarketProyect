@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-dark text-white footerstyle">
       <Container>
         <div className="py-3 text-center">
-          © {new Date().getFullYear()} PROYECTO NUEVO. Todos los derechos reservados.
+          © {new Date().getFullYear()} PLANTMARKET. Todos los derechos reservados.
         </div>
       </Container>
     </footer>

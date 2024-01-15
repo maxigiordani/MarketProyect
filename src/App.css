@@ -1,0 +1,6 @@
+.cardstyle {
+    background-color: aqua;
+}
+.cardstyle:hover {
+    background-color: blue;
+}

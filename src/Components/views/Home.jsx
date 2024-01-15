@@ -1,7 +1,24 @@
 import React from 'react';
 import { Carousel, Container, Card, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+  // Datos de muestra de productos (reemplaza esto con tus datos reales o recúperalos de una API)
+  const productos = [
+    { id: 1, nombre: 'Aloe Vera', descripcion: 'Aloe vera', imagen: 'https://via.placeholder.com/300x200' },
+    { id: 2, nombre: 'Rosa China', descripcion: 'Rosa china', imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },   
+    { id: 4, nombre: 'Rosa enana', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' }, 
+    { id: 5, nombre: 'Limonero', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },   
+    { id: 6, nombre: 'Jazmin paraguayo', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },  
+    { id: 7, nombre: 'Cactus', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' }, 
+    { id: 8, nombre: 'Helecho', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },     
+    
+  
+    
+
+  ];
+
   return (
     <Container className="mt-5">
       <Carousel>
@@ -16,25 +33,24 @@ const Home = () => {
             <p>Descubre nuestras ofertas exclusivas.</p>
           </Carousel.Caption>
         </Carousel.Item>
-        {/* Agrega más elementos Carousel.Item según sea necesario */}
       </Carousel>
 
       <h2 className="mt-5">Productos Destacados</h2>
-      <Row>
-        {/* Agrega tarjetas de productos aquí */}
-        <Col md={4} className="mb-4">
-          <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-            <Card.Body>
-              <Card.Title>Producto 1</Card.Title>
-              <Card.Text>
-                Descripción del producto.
-              </Card.Text>
-              {/* Agrega más detalles o botones según sea necesario */}
-            </Card.Body>
-          </Card>
-        </Col>
-        {/* Agrega más tarjetas según sea necesario */}
+      <Row className="flex-row overflow-auto">
+        {productos.map((producto) => (
+          <Col md={3} className="mb-4" key={producto.id}>
+            {/* Enlace a la página de detalles del producto */}
+            <Link to={`/productdetail/${producto.id}`} className="text-decoration-none">
+              <Card>
+                <Card.Img variant="top" src={producto.imagen} />
+                <Card.Body>
+                  <Card.Title>{producto.nombre}</Card.Title>
+                  <Card.Text>{producto.descripcion}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+        ))}
       </Row>
     </Container>
   );
