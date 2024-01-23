@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -12,10 +11,24 @@ import ProductDetail from './Components/views/ProductDetail';
 import Cart from './Components/views/Cart';
 
 const App = () => {
+  // Estado para el carrito de compras
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+  };
+
+  const removeFromCart = (updatedCart) => {
+    setCart(updatedCart);
+  };
+
+  const handleCheckout = () => {
+    // Realiza lógica de finalizar la compra aquí
+    const confirmed = window.confirm('¿Estás seguro de finalizar la compra?');
+    if (confirmed) {
+      setCart([]); // Limpia el carrito al finalizar la compra
+      alert('¡Compra realizada con éxito!');
+    }
   };
 
   return (
@@ -23,12 +36,18 @@ const App = () => {
       <div>
         <NavbarComponent />
         <Routes>
-          <Route path="/" element={<Home addToCart={addToCart} />} />
+          <Route
+            path="/"
+            element={<Home addToCart={addToCart} />}
+          />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/login" element={<PageLogin />} />
           <Route path="/administrador" element={<PageAdm />} />
           <Route path="/productdetail/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} onCheckout={handleCheckout} onRemoveProduct={removeFromCart} />}
+          />
         </Routes>
         <Footer />
       </div>

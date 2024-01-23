@@ -6,15 +6,16 @@ import { Link } from 'react-router-dom';
 const Home = ({ addToCart }) => {
   const productos = [
     { id: 1, nombre: 'Aloe Vera', precio: 2500, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 2, nombre: 'Rosa China', precio: 2400, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' }, 
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 2, nombre: 'Rosa China',   precio: 2400, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 100, imagen: 'https://via.placeholder.com/300x200' },
+
     // ... otros productos ...
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    alert(`¡"${product.nombre}" ha sido agregado al carrito!`);
+  };
 
   return (
     <Container className="mt-5">
@@ -41,17 +42,15 @@ const Home = ({ addToCart }) => {
               <Card.Body>
                 <Card.Title>{producto.nombre}</Card.Title>
                 <Card.Text>
-                  {producto.precio > 0 ? `PRECIO: $${producto.precio}` : 'Precio no disponible'}
+                  {producto.precio > 0 ? `PRECIO: $${producto.precio}` : 'Producto no disponible actualmente'}
                 </Card.Text>
-                {/* Agregar al carrito */}
                 {producto.precio > 0 && (
-                  <Button variant="primary" onClick={() => addToCart(producto)}>
+                  <Button variant="primary" className='mt-2' onClick={() => handleAddToCart(producto)}>
                     Agregar al carrito
                   </Button>
                 )}
-                {/* Enlace a la página de detalles del producto */}
                 <Link to={`/productdetail/${producto.id}`} className="text-decoration-none">
-                  <Button variant="info" className="mt-2">
+                  <Button variant="info" className="mt-2 m-3">
                     Detalles
                   </Button>
                 </Link>
@@ -60,7 +59,8 @@ const Home = ({ addToCart }) => {
           </Col>
         ))}
       </Row>
-    
+      <h2 className="mt-5">Shopping Cart</h2>
+      <Link to="/cart">View Cart</Link>
     </Container>
   );
 };
