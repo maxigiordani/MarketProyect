@@ -1,22 +1,19 @@
+// Home.jsx
 import React from 'react';
-import { Carousel, Container, Card, Row, Col } from 'react-bootstrap';
+import { Carousel, Container, Card, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
-  // Datos de muestra de productos (reemplaza esto con tus datos reales o recúperalos de una API)
+const Home = ({ addToCart }) => {
   const productos = [
-    { id: 1, nombre: 'Aloe Vera', descripcion: 'Aloe vera', imagen: 'https://via.placeholder.com/300x200' },
-    { id: 2, nombre: 'Rosa China', descripcion: 'Rosa china', imagen: 'https://via.placeholder.com/300x200' },
-    { id: 3, nombre: 'Potus', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },   
-    { id: 4, nombre: 'Rosa enana', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' }, 
-    { id: 5, nombre: 'Limonero', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },   
-    { id: 6, nombre: 'Jazmin paraguayo', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },  
-    { id: 7, nombre: 'Cactus', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' }, 
-    { id: 8, nombre: 'Helecho', descripcion: 'Potus', imagen: 'https://via.placeholder.com/300x200' },     
-    
-  
-    
-
+    { id: 1, nombre: 'Aloe Vera', precio: 2500, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 2, nombre: 'Rosa China', precio: 2400, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' }, 
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    { id: 3, nombre: 'Potus', precio: 0, imagen: 'https://via.placeholder.com/300x200' },
+    // ... otros productos ...
   ];
 
   return (
@@ -39,19 +36,31 @@ const Home = () => {
       <Row className="flex-row overflow-auto">
         {productos.map((producto) => (
           <Col md={3} className="mb-4" key={producto.id}>
-            {/* Enlace a la página de detalles del producto */}
-            <Link to={`/productdetail/${producto.id}`} className="text-decoration-none">
-              <Card>
-                <Card.Img variant="top" src={producto.imagen} />
-                <Card.Body>
-                  <Card.Title>{producto.nombre}</Card.Title>
-                  <Card.Text>{producto.descripcion}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Link>
+            <Card>
+              <Card.Img variant="top" src={producto.imagen} />
+              <Card.Body>
+                <Card.Title>{producto.nombre}</Card.Title>
+                <Card.Text>
+                  {producto.precio > 0 ? `PRECIO: $${producto.precio}` : 'Precio no disponible'}
+                </Card.Text>
+                {/* Agregar al carrito */}
+                {producto.precio > 0 && (
+                  <Button variant="primary" onClick={() => addToCart(producto)}>
+                    Agregar al carrito
+                  </Button>
+                )}
+                {/* Enlace a la página de detalles del producto */}
+                <Link to={`/productdetail/${producto.id}`} className="text-decoration-none">
+                  <Button variant="info" className="mt-2">
+                    Detalles
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
           </Col>
         ))}
       </Row>
+    
     </Container>
   );
 };

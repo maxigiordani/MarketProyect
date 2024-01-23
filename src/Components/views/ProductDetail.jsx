@@ -5,9 +5,9 @@ const ProductDetail = () => {
   const { id } = useParams();
 
   const productos = [
-    { id: 1, nombre: 'Aloe Vera', descripcion: 'Aloe vera', imagen: 'https://via.placeholder.com/300x200', precio: 200 },
-    { id: 2, nombre: 'Rosa China', descripcion: 'Rosa china', imagen: 'https://via.placeholder.com/300x200', precio: 150 },
-    { id: 8, nombre: 'Helecho', descripcion: 'Rosa china', imagen: 'https://via.placeholder.com/300x200', precio: 150 },
+    { id: 1, nombre: 'Aloe Vera', descripcion: 'planta de sombra', imagen: 'https://via.placeholder.com/300x200' },
+    { id: 2, nombre: 'Rosa China', descripcion: 'planta de sol', imagen: 'https://via.placeholder.com/300x200' },
+    { id: 8, nombre: 'Helecho', descripcion: 'planta semisombra', imagen: 'https://via.placeholder.com/300x200' },
   
   ];
 
@@ -19,10 +19,11 @@ const ProductDetail = () => {
 
   return (
     <div className="container">
-      <h1>{selectedProduct.nombre}</h1>
+      <h1 className="text-center">{selectedProduct.nombre}</h1>
       <img src={selectedProduct.imagen} alt={`Imagen de ${selectedProduct.nombre}`} />
+      
       <p>{selectedProduct.descripcion}</p>
-      <p>Precio: {selectedProduct.precio}</p>
+   
     </div>
   );
 };

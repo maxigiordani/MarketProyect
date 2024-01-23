@@ -4,3 +4,18 @@
 .cardstyle:hover {
     background-color: blue;
 }
+.precio {
+    background-color: blue;
+    text-align: end;
+    color: wheat;
+    font-size: large;
+}
+.nav {
+    background-color: green !important;
+    padding: 25px;
+}
+
+.footerstyle {
+    background-color: green !important;
+    padding: 20px;
+}
